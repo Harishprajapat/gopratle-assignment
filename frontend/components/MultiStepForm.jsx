@@ -2,37 +2,37 @@
 
 import { useState } from "react";
 
-export default function MultiStepForm(){
-    const [step , setStep]= useState(1);
+export default function MultiStepForm() {
+  const [step, setStep] = useState(1);
 
-    const [fromData, setFormData]=useState({
+  const [fromData, setFormData] = useState({
     eventNames: "",
     eventType: "",
     date: "",
-    location:"",
+    location: "",
     venue: "",
-    hiringFor : "",
-    details :{},
-});
+    hiringFor: "",
+    details: {},
+  });
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
-return(
+  return (
     <div className="max-w-xl mx-auto mt-10 bg-white p-6 rounded-2xl shadow">
       <h2 className="text-xl font-semibold mb-4">Create Requirement</h2>
-
-       {step === 1 && (
+      {step === 1 && (
         <div className="space-y-3">
-        <input name="eventName"
-        placeholder="Event Name"
-        className="w-full border p-2 rounded"
-        onChange={handleChange}
-        />
+          <input
+            name="eventName"
+            placeholder="Event Name"
+            className="w-full border p-2 rounded"
+            onChange={handleChange}
+          />
 
-         <input
+          <input
             name="eventType"
             placeholder="Event Type (Wedding, Party...)"
             className="w-full border p-2 rounded"
@@ -78,9 +78,25 @@ return(
             Next
           </button>
         </div>
-       )};
-       
+      )}
+      
+      {step === 2 && (
+        <div>
+          <h3 className="mb-3 font-medium">Step 2 (Dynamic Fields)</h3>
+          <button
+            onClick={() => setStep(1)}
+            className="bg-gray-300 px-4 py-2 rounded mr-2"
+          >
+            Back
+          </button>
+          <button
+            onClick={() => setStep(3)}
+            className="bg-black text-white px-4 py-2 rounded"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
-
-);
+  );
 }

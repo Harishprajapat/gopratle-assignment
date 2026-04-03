@@ -5,7 +5,7 @@ import { useState } from "react";
 export default function MultiStepForm() {
   const [step, setStep] = useState(1);
 
-  const [fromData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     eventNames: "",
     eventType: "",
     date: "",
@@ -79,22 +79,105 @@ export default function MultiStepForm() {
           </button>
         </div>
       )}
-      
+
       {step === 2 && (
         <div>
           <h3 className="mb-3 font-medium">Step 2 (Dynamic Fields)</h3>
-          <button
-            onClick={() => setStep(1)}
-            className="bg-gray-300 px-4 py-2 rounded mr-2"
-          >
-            Back
-          </button>
-          <button
-            onClick={() => setStep(3)}
-            className="bg-black text-white px-4 py-2 rounded"
-          >
-            Next
-          </button>
+          {formData.hiringFor === "Planner" && (
+            <>
+              <input
+                name="budget"
+                placeholder="Budget"
+                className="w-full border p-2 rounded mb-2"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    details: { ...formData.details, budget: e.target.value },
+                  })
+                }
+              />
+              <input
+                name="guestCount"
+                placeholder="Guest Count"
+                className="w-full border p-2 rounded"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    details: {
+                      ...formData.details,
+                      guestCount: e.target.value,
+                    },
+                  })
+                }
+              />
+            </>
+          )}
+
+          {formData.hiringFor === "Performer" && (
+            <>
+              <input
+                placeholder="Singer / DJ"
+                className="w-full border p-2 rounded mb-2"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    details: {
+                      ...formData.details,
+                      performerType: e.target.value,
+                    },
+                  })
+                }
+              />
+              <input
+                placeholder="Duration"
+                className="w-full border p-2 rounded"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    details: { ...formData.details, duration: e.target.value },
+                  })
+                }
+              />
+            </>
+          )}
+          {formData.hiringFor === "Crew" && (
+            <>
+              <input
+                placeholder="Crew Type"
+                className="w-full border p-2 rounded mb-2"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    details: { ...formData.details, crewType: e.target.value },
+                  })
+                }
+              />
+              <input
+                placeholder="Number of People"
+                className="w-full border p-2 rounded"
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    details: { ...formData.details, people: e.target.value },
+                  })
+                }
+              />
+            </>
+          )}
+          <div className="flex mt-4 pt-4  border-gray-200">
+            <button
+              onClick={() => setStep(1)}
+              className="bg-gray-300 px-4 py-2 rounded mr-2"
+            >
+              Back
+            </button>
+            <button
+              onClick={() => setStep(3)}
+              className="bg-black text-white px-4 py-2 rounded"
+            >
+              Next
+            </button>
+          </div>
         </div>
       )}
     </div>

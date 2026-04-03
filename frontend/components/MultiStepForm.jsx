@@ -32,7 +32,14 @@ return(
         onChange={handleChange}
         />
 
-       <input
+         <input
+            name="eventType"
+            placeholder="Event Type (Wedding, Party...)"
+            className="w-full border p-2 rounded"
+            onChange={handleChange}
+          />
+
+          <input
             type="date"
             name="date"
             className="w-full border p-2 rounded"

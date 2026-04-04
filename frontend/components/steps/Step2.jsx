@@ -12,12 +12,13 @@ export default function Step2({ formData, setFormData, setStep }) {
 
   return (
     <div>
-      <h3 className="mb-3 font-medium">Step 2 (Dynamic Fields)</h3>
+      <h3 className="text-xl font-semibold mb-4 text-gray-700">Event Details</h3>
 
       {formData.hiringFor === "Planner" && (
         <>
           <input
             placeholder="Budget"
+        
             className="w-full border p-2 rounded mb-2"
             onChange={(e) => handleDetailsChange("budget", e.target.value)}
           />

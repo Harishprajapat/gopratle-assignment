@@ -1,20 +1,25 @@
 const express = require("express");
 const cors = require("cors");
-
+require("dotenv").config();
+const mongoose = require("mongoose");
+const requirementRoutes = require("./routes/requirement");
 const app = express();
+
+const uri = process.env.MONGO_URL;
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/requirement", requirementRoutes);
 
-// ✅ ROUTE FIRST
 app.get("/", (req, res) => {
-  console.log("Root route hit");
   res.send("API Running 🚀");
 });
 
-// ✅ THEN START SERVER
-const PORT = 5000;
+mongoose.connect(uri)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.log(err));
 
+const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

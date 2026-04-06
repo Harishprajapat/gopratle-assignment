@@ -39,13 +39,14 @@ export default function Step3({ formData, setStep }) {
     }
     setLoading(true);
     try {
-      const res = await fetch("https://event-hiring-api.onrender.com", {
+      const res = await fetch("https://event-hiring-api.onrender.com/api/requirement/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
+      if (!res.ok) throw new Error("Failed request");
 
       const data = await res.json();
       console.log("Response:", data);
